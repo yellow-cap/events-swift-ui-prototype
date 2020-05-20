@@ -3,6 +3,7 @@ import SwiftUI
 struct DashboardCardProps {
     let name: String
     let imgUrl: String
+    let category: EventCategory
 }
 
 struct DashboardCard: View {
@@ -17,7 +18,7 @@ struct DashboardCard: View {
                     .clipped()
             VStack(alignment: .leading, spacing: 6) {
                 Text(props.name)
-                Text("Category: Light")
+                Text("Category: \(props.category.rawValue)")
                 Text("Location: Izhevsk")
                 Divider()
                 HStack {

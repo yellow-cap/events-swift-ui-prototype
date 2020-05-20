@@ -19,6 +19,7 @@
 		58C7A93064A1703A1F1C960D /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A159FF759A25F405BF7B /* Dashboard.swift */; };
 		58C7AACA79E73A3A1493E5A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C7AAFB090D1A6837EB6E3E /* Assets.xcassets */; };
 		58C7AE7BAA156353B3CC9B42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7AB1EC38CF8891ED34F08 /* SceneDelegate.swift */; };
+		58C7AF8D8DA2EF1B73F83742 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A5E208E175201431927D /* EventCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		58C7A2A51A63AF8B54072CDA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		58C7A2E58179FD37D878BFF3 /* EventDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetails.swift; sourceTree = "<group>"; };
 		58C7A409F9742F7885583BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		58C7A5E208E175201431927D /* EventCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		58C7A62782A8739C0F43A3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58C7A669C6C26C2D4D7DFDA8 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		58C7A74325A63CF3689D5248 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				58C7A669C6C26C2D4D7DFDA8 /* Event.swift */,
+				58C7A5E208E175201431927D /* EventCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				58C7A4D8EDA4E5F4EEDB54F3 /* AppState.swift in Sources */,
 				58C7A5BBF1E52E7A560FD6AF /* EventDetails.swift in Sources */,
 				58C7A045AA36218891EF96ED /* DashboardCard.swift in Sources */,
+				58C7AF8D8DA2EF1B73F83742 /* EventCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

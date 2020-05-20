@@ -20,7 +20,8 @@ struct Dashboard: View {
                 ForEach(self.eventsState.events) { event in
                     DashboardCard(props: DashboardCardProps(
                             name: event.name,
-                            imgUrl: event.imgUrl
+                            imgUrl: event.imgUrl,
+                            category: event.category
                     ))
                             .onTapGesture {
                                 self.selectedEventId = event.id
