@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58C7A045AA36218891EF96ED /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7ADDDC678A7546D3E9131 /* DashboardCard.swift */; };
 		58C7A1A3A4BA4EC489CEFC40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A669C6C26C2D4D7DFDA8 /* Event.swift */; };
 		58C7A2BE36F83521C3D5AF96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C7A2A51A63AF8B54072CDA /* Preview Assets.xcassets */; };
 		58C7A38CD33F77AD8CD1CFE5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7ACD394333E7F034483CD /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 		58C7AAFB090D1A6837EB6E3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58C7AB1EC38CF8891ED34F08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		58C7ACD394333E7F034483CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		58C7ADDDC678A7546D3E9131 /* DashboardCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCard.swift; sourceTree = "<group>"; };
 		58C7AEA632EEE756BCB7B0B9 /* events-swiftui-prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "events-swiftui-prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C7AECF65B61C8064D71477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +112,7 @@
 			children = (
 				58C7A159FF759A25F405BF7B /* Dashboard.swift */,
 				58C7A2E58179FD37D878BFF3 /* EventDetails.swift */,
+				58C7ADDDC678A7546D3E9131 /* DashboardCard.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -155,7 +158,9 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
+				Base,
 			);
 			mainGroup = 58C7A9A7E7E29DC1D20750AE;
 			productRefGroup = 58C7A494D25E764791D2705C /* Products */;
@@ -193,6 +198,7 @@
 				58C7A93064A1703A1F1C960D /* Dashboard.swift in Sources */,
 				58C7A4D8EDA4E5F4EEDB54F3 /* AppState.swift in Sources */,
 				58C7A5BBF1E52E7A560FD6AF /* EventDetails.swift in Sources */,
+				58C7A045AA36218891EF96ED /* DashboardCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +264,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -373,6 +378,7 @@
 				58C7A8C4F94F94B836CDC441 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

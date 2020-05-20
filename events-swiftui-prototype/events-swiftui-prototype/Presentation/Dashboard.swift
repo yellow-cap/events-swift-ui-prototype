@@ -18,9 +18,13 @@ struct Dashboard: View {
         VStack {
             List {
                 ForEach(self.eventsState.events) { event in
-                    Text(event.name).onTapGesture {
-                        self.selectedEventId = event.id
-                        self.isEventDetailsActive = true
+                    DashboardCard(props: DashboardCardProps(
+                            name: event.name,
+                            imgUrl: event.imgUrl
+                    ))
+                            .onTapGesture {
+                                self.selectedEventId = event.id
+                                self.isEventDetailsActive = true
                     }
                 }
             }
@@ -36,9 +40,11 @@ struct Dashboard: View {
                     EmptyView()
                 }
             }
-        }.onAppear {
-            self.fetchEvents()
         }
+                .navigationBarTitle("Dashboard")
+                .onAppear {
+                    self.fetchEvents()
+                }
     }
     
     private func fetchEvents() {
