@@ -1,9 +1,17 @@
 import SwiftUI
 
+enum Segments: Int {
+    case all = 0
+    case light = 1
+    case normal = 2
+    case hard = 3
+}
+
 struct Dashboard: View {
     @EnvironmentObject var eventsState: AppState
     @State var isEventDetailsActive: Bool = false
     @State var selectedEventId: Int? = nil
+    @State private var selectedSegment = Segments.all.rawValue
     let fetcher = Fetcher()
 
     init() {
@@ -13,6 +21,9 @@ struct Dashboard: View {
     var body: some View {
         VStack {
             List {
+                Section(header: self.picker()) {
+                    EmptyView()
+                }
                 ForEach(self.eventsState.events) { event in
                     DashboardCard(props: DashboardCardProps(
                             name: event.name,
@@ -42,6 +53,20 @@ struct Dashboard: View {
                 .onAppear {
                     self.fetchEvents()
                 }
+    }
+    
+    private func picker() -> some View {
+        Picker("Xui", selection: $selectedSegment) {
+            Text("All")
+                    .tag(0)
+            Text("Light")
+                    .tag(1)
+            Text("Normal")
+                    .tag(2)
+            Text("Hard")
+                    .tag(3)
+        }
+                .pickerStyle(SegmentedPickerStyle())
     }
     
     private func fetchEvents() {
