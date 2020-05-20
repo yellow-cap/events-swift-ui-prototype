@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Dashboard()
+        NavigationView {
+            Dashboard()
+        }
     }
 }

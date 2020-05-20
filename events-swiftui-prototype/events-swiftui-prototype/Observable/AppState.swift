@@ -1,5 +1,5 @@
 import SwiftUI
 
-class EventsState: ObservableObject {
+class AppState: ObservableObject {
     @Published var events: [Event] = []
 }

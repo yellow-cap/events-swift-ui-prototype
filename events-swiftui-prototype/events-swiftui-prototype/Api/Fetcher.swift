@@ -1,7 +1,7 @@
 import SwiftUI
 import Foundation
 
-class EventsFetcher {
+class Fetcher {
     func fetchEvents() -> [Event] {
         return [
             Event(id: 0, name: "Horse riding"),
