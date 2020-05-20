@@ -1,9 +1,5 @@
 import SwiftUI
 
-struct DashboardProps {
-    let events: [Event]
-}
-
 struct Dashboard: View {
     @EnvironmentObject var eventsState: AppState
     @State var isEventDetailsActive: Bool = false
