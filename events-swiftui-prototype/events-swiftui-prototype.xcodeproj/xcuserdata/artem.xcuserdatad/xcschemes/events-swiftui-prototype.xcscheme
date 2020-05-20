@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "58C7A3E9573FA1F7B6EC0E58"
+               BuildableName = "events-swiftui-prototype.app"
+               BlueprintName = "events-swiftui-prototype"
+               ReferencedContainer = "container:events-swiftui-prototype.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "58C7A3E9573FA1F7B6EC0E58"
+            BuildableName = "events-swiftui-prototype.app"
+            BlueprintName = "events-swiftui-prototype"
+            ReferencedContainer = "container:events-swiftui-prototype.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+</Scheme>
