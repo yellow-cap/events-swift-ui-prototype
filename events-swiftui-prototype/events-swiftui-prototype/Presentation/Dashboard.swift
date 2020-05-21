@@ -22,16 +22,15 @@ struct Dashboard: View {
         GeometryReader { gr in
             VStack {
                 self.picker(activeSegment: self.$selectedSegment)
-                self.orders(orders: self.appState.orders, gr: gr)
 
                 if self.selectedSegment == Segments.all.rawValue {
-                    self.events(events: self.appState.events)
+                    self.list(events: self.appState.events)
                 } else if self.selectedSegment == Segments.light.rawValue {
-                    self.events (events: self.appState.events.filter { $0.category == EventCategory.light })
+                    self.list (events: self.appState.events.filter { $0.category == EventCategory.light })
                 } else if self.selectedSegment == Segments.normal.rawValue {
-                    self.events (events: self.appState.events.filter { $0.category == EventCategory.normal })
+                    self.list (events: self.appState.events.filter { $0.category == EventCategory.normal })
                 } else if self.selectedSegment == Segments.hard.rawValue {
-                    self.events (events: self.appState.events.filter { $0.category == EventCategory.hard })
+                    self.list (events: self.appState.events.filter { $0.category == EventCategory.hard })
                 }
 
                 if self.isEventDetailsActive {
@@ -67,11 +66,12 @@ struct Dashboard: View {
                 .pickerStyle(SegmentedPickerStyle())
     }
 
-    private func events(events: [Event]) -> some View {
+    private func list(events: [Event]) -> some View {
         List {
-            Section {
-                Text("Events").font(.largeTitle)
-            }
+            self.orders(orders: self.appState.orders)
+
+            Text("Events").font(.largeTitle)
+            
             ForEach(events) { event in
                 DashboardCard(props: DashboardCardProps(
                         event: event
@@ -86,16 +86,16 @@ struct Dashboard: View {
                 .animation(nil)
     }
 
-    private func orders(orders: [Order], gr: GeometryProxy) -> some View {
+    private func orders(orders: [Order]) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("My orders")
-                    .padding(.horizontal, 16)
-                    .font(.largeTitle)
+            Text("My orders").font(.largeTitle)
+
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .center, spacing: 20) {
+                HStack(alignment: .center) {
                     Text("")
                     ForEach(orders) { order in
                         OrderCard(props: OrderCardProps(order: order))
+                                .padding(.trailing, 20)
                     }
                     Text("")
                 }.frame(height: 180)
