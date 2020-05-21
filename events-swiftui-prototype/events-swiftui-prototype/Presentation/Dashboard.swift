@@ -24,13 +24,25 @@ struct Dashboard: View {
                 self.picker(activeSegment: self.$selectedSegment)
 
                 if self.selectedSegment == Segments.all.rawValue {
-                    self.list(events: self.appState.events)
+                    self.list(
+                            events: self.appState.events,
+                            orders: self.appState.orders
+                    )
                 } else if self.selectedSegment == Segments.light.rawValue {
-                    self.list (events: self.appState.events.filter { $0.category == EventCategory.light })
+                    self.list (
+                            events: self.appState.events.filter { $0.category == EventCategory.light },
+                            orders: self.appState.orders.filter { $0.category == EventCategory.light }
+                    )
                 } else if self.selectedSegment == Segments.normal.rawValue {
-                    self.list (events: self.appState.events.filter { $0.category == EventCategory.normal })
+                    self.list (
+                            events: self.appState.events.filter { $0.category == EventCategory.normal },
+                            orders: self.appState.orders.filter { $0.category == EventCategory.normal }
+                    )
                 } else if self.selectedSegment == Segments.hard.rawValue {
-                    self.list (events: self.appState.events.filter { $0.category == EventCategory.hard })
+                    self.list (
+                            events: self.appState.events.filter { $0.category == EventCategory.hard },
+                            orders: self.appState.orders.filter { $0.category == EventCategory.hard }
+                    )
                 }
 
                 if self.isEventDetailsActive {
@@ -66,9 +78,9 @@ struct Dashboard: View {
                 .pickerStyle(SegmentedPickerStyle())
     }
 
-    private func list(events: [Event]) -> some View {
+    private func list(events: [Event], orders: [Order]) -> some View {
         List {
-            self.orders(orders: self.appState.orders)
+            self.orders(orders: orders)
 
             Text("Events").font(.largeTitle)
             
@@ -95,7 +107,7 @@ struct Dashboard: View {
                     Text("")
                     ForEach(orders) { order in
                         OrderCard(props: OrderCardProps(order: order))
-                                .padding(.trailing, 20)
+                                .padding(.trailing, 16)
                     }
                     Text("")
                 }.frame(height: 180)
