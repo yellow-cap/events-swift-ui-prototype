@@ -54,7 +54,11 @@ struct Dashboard: View {
             Text("Light").tag(1)
             Text("Normal").tag(2)
             Text("Hard").tag(3)
-        }.pickerStyle(SegmentedPickerStyle())
+        }
+                .padding(.bottom, 12)
+                .background(Color.white)
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .pickerStyle(SegmentedPickerStyle())
     }
 
     private func list(events: [Event]) -> some View {
@@ -74,6 +78,8 @@ struct Dashboard: View {
                         }
             }
         }
+                .listStyle(PlainListStyle())
+                .animation(nil)
     }
     
     private func fetchEvents() {
