@@ -61,7 +61,7 @@ struct Dashboard: View {
             Text("Normal").tag(2)
             Text("Hard").tag(3)
         }
-                .padding(.bottom, 12)
+                .padding(.horizontal, 16)
                 .background(Color.white)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .pickerStyle(SegmentedPickerStyle())
