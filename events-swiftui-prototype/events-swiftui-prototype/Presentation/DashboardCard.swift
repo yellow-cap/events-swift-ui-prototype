@@ -25,7 +25,7 @@ struct DashboardCard: View {
                     Text("Max pax: \(props.event.persons)")
                 }
             }
-                    .padding(8)
+                    .padding(12)
         }
                 .background(Color.white)
                 .cornerRadius(15)
