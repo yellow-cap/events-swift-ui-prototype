@@ -8,7 +8,7 @@ enum Segments: Int {
 }
 
 struct Dashboard: View {
-    @EnvironmentObject var eventsState: AppState
+    @EnvironmentObject var appState: AppState
     @State var isEventDetailsActive: Bool = false
     @State var selectedEventId: Int? = nil
     @State private var selectedSegment = Segments.all.rawValue
@@ -20,28 +20,21 @@ struct Dashboard: View {
 
     var body: some View {
         VStack {
-            List {
-                Section(header: self.picker()) {
-                    EmptyView()
-                }
-                ForEach(self.eventsState.events) { event in
-                    DashboardCard(props: DashboardCardProps(
-                            name: event.name,
-                            imgUrl: event.imgUrl,
-                            category: event.category
-                    ))
-                            .onTapGesture {
-                                self.selectedEventId = event.id
-                                self.isEventDetailsActive = true
-                    }
-                }
+            if self.selectedSegment == Segments.all.rawValue {
+                list(events: self.appState.events)
+            } else if self.selectedSegment == Segments.light.rawValue {
+                list (events: self.appState.events.filter { $0.category == EventCategory.light })
+            } else if self.selectedSegment == Segments.normal.rawValue {
+                list (events: self.appState.events.filter { $0.category == EventCategory.normal })
+            } else if self.selectedSegment == Segments.hard.rawValue {
+                list (events: self.appState.events.filter { $0.category == EventCategory.hard })
             }
 
             if isEventDetailsActive {
                 NavigationLink(
                         destination: EventDetails(props:
                         EventDetailsProps(
-                                event: self.eventsState.events.first { $0.id == self.selectedEventId }!
+                                event: self.appState.events.first { $0.id == self.selectedEventId }!
                         )),
                         isActive: $isEventDetailsActive
                 ) {
@@ -55,23 +48,37 @@ struct Dashboard: View {
                 }
     }
     
-    private func picker() -> some View {
-        Picker("Xui", selection: $selectedSegment) {
-            Text("All")
-                    .tag(0)
-            Text("Light")
-                    .tag(1)
-            Text("Normal")
-                    .tag(2)
-            Text("Hard")
-                    .tag(3)
+    private func picker(activeSegment: Binding<Int>) -> some View {
+        Picker("Picker", selection: activeSegment) {
+            Text("All").tag(0)
+            Text("Light").tag(1)
+            Text("Normal").tag(2)
+            Text("Hard").tag(3)
+        }.pickerStyle(SegmentedPickerStyle())
+    }
+
+    private func list(events: [Event]) -> some View {
+        List {
+            Section(header: self.picker(activeSegment: $selectedSegment)) {
+                EmptyView()
+            }
+            ForEach(events) { event in
+                DashboardCard(props: DashboardCardProps(
+                        name: event.name,
+                        imgUrl: event.imgUrl,
+                        category: event.category
+                ))
+                        .onTapGesture {
+                            self.selectedEventId = event.id
+                            self.isEventDetailsActive = true
+                        }
+            }
         }
-                .pickerStyle(SegmentedPickerStyle())
     }
     
     private func fetchEvents() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.eventsState.events = self.fetcher.fetchEvents()
+            self.appState.events = self.fetcher.fetchEvents()
         }
     }
 }
