@@ -91,14 +91,14 @@ struct Dashboard: View {
             Text("My orders")
                     .padding(.horizontal, 16)
                     .font(.largeTitle)
-            ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: 20) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .center, spacing: 20) {
                     Text("")
                     ForEach(orders) { order in
-                        Text(order.name)
+                        OrderCard(props: OrderCardProps(order: order))
                     }
                     Text("")
-                }.frame(width: gr.size.width, height: 120)
+                }.frame(height: 180)
             }
         }
     }
