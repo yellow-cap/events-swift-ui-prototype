@@ -9,5 +9,6 @@ struct OrderDetails: View {
 
     var body: some View {
         Text("Order id: \(props.order.id)")
+                .navigationBarTitle("Order details")
     }
 }

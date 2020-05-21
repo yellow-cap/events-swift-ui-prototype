@@ -94,18 +94,21 @@ struct Dashboard: View {
 
     private func list(events: [Event], orders: [Order]) -> some View {
         List {
-            self.orders(orders: orders)
+            if !orders.isEmpty {
+                self.orders(orders: orders)
+            }
 
-            Text("Events").font(.largeTitle)
-            
-            ForEach(events) { event in
-                DashboardCard(props: DashboardCardProps(
-                        event: event
-                ))
-                        .onTapGesture {
-                            self.selectedEventId = event.id
-                            self.isEventDetailsActive = true
-                        }
+            if !events.isEmpty {
+                Text("Events").font(.largeTitle)
+                ForEach(events) { event in
+                    DashboardCard(props: DashboardCardProps(
+                            event: event
+                    ))
+                            .onTapGesture {
+                                self.selectedEventId = event.id
+                                self.isEventDetailsActive = true
+                            }
+                }
             }
         }
                 .listStyle(PlainListStyle())

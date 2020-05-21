@@ -9,5 +9,6 @@ struct EventDetails: View {
 
     var body: some View {
         Text("Event name: \(props.event.name)")
+                .navigationBarTitle("Event details")
     }
 }
