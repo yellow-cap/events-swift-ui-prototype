@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct DashboardCardProps {
-    let name: String
-    let imgUrl: String
-    let category: EventCategory
+    let event: Event
 }
 
 struct DashboardCard: View {
@@ -11,20 +9,20 @@ struct DashboardCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Image(props.imgUrl)
+            Image(props.event.imgUrl)
                     .resizable()
                     .scaledToFill()
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: UIScreen.main.bounds.width, minHeight: nil, idealHeight: nil, maxHeight: 300, alignment: .center)
                     .clipped()
             VStack(alignment: .leading, spacing: 6) {
-                Text(props.name)
-                Text("Category: \(props.category.rawValue)")
-                Text("Location: Izhevsk")
+                Text(props.event.name)
+                Text("Category: \(props.event.category.rawValue)")
+                Text("Location: \(props.event.location)")
                 Divider()
                 HStack {
-                    Text("Price: 1500₽ per person")
+                    Text("Price: \(props.event.price)\(props.event.currency) per person")
                     Spacer()
-                    Text("Max pax: 3")
+                    Text("Max pax: \(props.event.persons)")
                 }
             }
                     .padding(8)
