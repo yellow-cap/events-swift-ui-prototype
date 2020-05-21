@@ -64,7 +64,7 @@ struct Dashboard: View {
     private func list(events: [Event]) -> some View {
         List {
             Section(header: self.picker(activeSegment: $selectedSegment)) {
-                EmptyView()
+                Text("Events").font(.largeTitle)
             }
             ForEach(events) { event in
                 DashboardCard(props: DashboardCardProps(
