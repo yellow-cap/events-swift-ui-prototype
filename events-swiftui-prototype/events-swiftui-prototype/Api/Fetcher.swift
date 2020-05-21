@@ -46,4 +46,42 @@ class Fetcher {
             )
         ]
     }
+
+    func fetchOrders() -> [Order] {
+        [
+            Order(
+                    id: 0,
+                    name: "Horse riding",
+                    category: EventCategory.light,
+                    location: "Izhevsk",
+                    date: "22.05.2020",
+                    time: "13:00",
+                    price: 4500,
+                    persons: 3,
+                    currency: "₽"
+            ),
+            Order(
+                    id: 1,
+                    name: "Rafting",
+                    category: EventCategory.normal,
+                    location: "Sarapul",
+                    date: "01.06.2020",
+                    time: "14:00",
+                    price: 16100,
+                    persons: 7,
+                    currency: "₽"
+            ),
+            Order(
+                    id: 3,
+                    name: "Rafting",
+                    category: EventCategory.normal,
+                    location: "Sarapul",
+                    date: "02.06.2020",
+                    time: "13:00",
+                    price: 9200,
+                    persons: 4,
+                    currency: "₽"
+            )
+        ]
+    }
 }

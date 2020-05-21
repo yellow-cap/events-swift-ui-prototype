@@ -19,33 +19,39 @@ struct Dashboard: View {
     }
 
     var body: some View {
-        VStack {
-            if self.selectedSegment == Segments.all.rawValue {
-                list(events: self.appState.events)
-            } else if self.selectedSegment == Segments.light.rawValue {
-                list (events: self.appState.events.filter { $0.category == EventCategory.light })
-            } else if self.selectedSegment == Segments.normal.rawValue {
-                list (events: self.appState.events.filter { $0.category == EventCategory.normal })
-            } else if self.selectedSegment == Segments.hard.rawValue {
-                list (events: self.appState.events.filter { $0.category == EventCategory.hard })
-            }
+        GeometryReader { gr in
+            VStack {
+                self.picker(activeSegment: self.$selectedSegment)
+                self.orders(orders: self.appState.orders, gr: gr)
 
-            if isEventDetailsActive {
-                NavigationLink(
-                        destination: EventDetails(props:
-                        EventDetailsProps(
-                                event: self.appState.events.first { $0.id == self.selectedEventId }!
-                        )),
-                        isActive: $isEventDetailsActive
-                ) {
-                    EmptyView()
+                if self.selectedSegment == Segments.all.rawValue {
+                    self.events(events: self.appState.events)
+                } else if self.selectedSegment == Segments.light.rawValue {
+                    self.events (events: self.appState.events.filter { $0.category == EventCategory.light })
+                } else if self.selectedSegment == Segments.normal.rawValue {
+                    self.events (events: self.appState.events.filter { $0.category == EventCategory.normal })
+                } else if self.selectedSegment == Segments.hard.rawValue {
+                    self.events (events: self.appState.events.filter { $0.category == EventCategory.hard })
+                }
+
+                if self.isEventDetailsActive {
+                    NavigationLink(
+                            destination: EventDetails(props:
+                            EventDetailsProps(
+                                    event: self.appState.events.first { $0.id == self.selectedEventId }!
+                            )),
+                            isActive: self.$isEventDetailsActive
+                    ) {
+                        EmptyView()
+                    }
                 }
             }
+                    .navigationBarTitle("Dashboard")
+                    .onAppear {
+                        self.fetchEvents()
+                        self.fetchOrders()
+                    }
         }
-                .navigationBarTitle("Dashboard")
-                .onAppear {
-                    self.fetchEvents()
-                }
     }
     
     private func picker(activeSegment: Binding<Int>) -> some View {
@@ -61,9 +67,9 @@ struct Dashboard: View {
                 .pickerStyle(SegmentedPickerStyle())
     }
 
-    private func list(events: [Event]) -> some View {
+    private func events(events: [Event]) -> some View {
         List {
-            Section(header: self.picker(activeSegment: $selectedSegment)) {
+            Section {
                 Text("Events").font(.largeTitle)
             }
             ForEach(events) { event in
@@ -79,10 +85,33 @@ struct Dashboard: View {
                 .listStyle(PlainListStyle())
                 .animation(nil)
     }
+
+    private func orders(orders: [Order], gr: GeometryProxy) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("My orders")
+                    .padding(.horizontal, 16)
+                    .font(.largeTitle)
+            ScrollView(.horizontal) {
+                HStack(alignment: .top, spacing: 20) {
+                    Text("")
+                    ForEach(orders) { order in
+                        Text(order.name)
+                    }
+                    Text("")
+                }.frame(width: gr.size.width, height: 120)
+            }
+        }
+    }
     
     private func fetchEvents() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.appState.events = self.fetcher.fetchEvents()
+        }
+    }
+
+    private func fetchOrders() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.appState.orders = self.fetcher.fetchOrders()
         }
     }
 }
