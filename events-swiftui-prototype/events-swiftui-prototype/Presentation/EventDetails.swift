@@ -8,6 +8,6 @@ struct EventDetails: View {
     let props: EventDetailsProps
 
     var body: some View {
-        Text(props.event.name)
+        Text("Event name: \(props.event.name)")
     }
 }

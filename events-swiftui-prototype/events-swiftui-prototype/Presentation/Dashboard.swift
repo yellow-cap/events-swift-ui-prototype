@@ -9,8 +9,10 @@ enum Segments: Int {
 
 struct Dashboard: View {
     @EnvironmentObject var appState: AppState
-    @State var isEventDetailsActive: Bool = false
     @State var selectedEventId: Int? = nil
+    @State var isEventDetailsActive: Bool = false
+    @State var selectedOrderId: Int? = nil
+    @State var isOrderDetailsActive: Bool = false
     @State private var selectedSegment = Segments.all.rawValue
     let fetcher = Fetcher()
 
@@ -52,6 +54,18 @@ struct Dashboard: View {
                                     event: self.appState.events.first { $0.id == self.selectedEventId }!
                             )),
                             isActive: self.$isEventDetailsActive
+                    ) {
+                        EmptyView()
+                    }
+                }
+
+                if self.isOrderDetailsActive {
+                    NavigationLink(
+                            destination: OrderDetails(props:
+                            OrderDetailsProps(
+                                    order: self.appState.orders.first { $0.id == self.selectedOrderId }!
+                            )),
+                            isActive: self.$isOrderDetailsActive
                     ) {
                         EmptyView()
                     }
@@ -107,6 +121,10 @@ struct Dashboard: View {
                     Text("")
                     ForEach(orders) { order in
                         OrderCard(props: OrderCardProps(order: order))
+                                .onTapGesture {
+                                    self.selectedOrderId = order.id
+                                    self.isOrderDetailsActive = true
+                                }
                                 .padding(.trailing, 16)
                     }
                     Text("")
