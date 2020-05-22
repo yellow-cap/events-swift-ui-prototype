@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		58C7A045AA36218891EF96ED /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7ADDDC678A7546D3E9131 /* DashboardCard.swift */; };
+		58C7A074568E1751F46F7191 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A932473587343D42D97F /* Favorites.swift */; };
 		58C7A1A3A4BA4EC489CEFC40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A669C6C26C2D4D7DFDA8 /* Event.swift */; };
 		58C7A2BE36F83521C3D5AF96 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C7A2A51A63AF8B54072CDA /* Preview Assets.xcassets */; };
 		58C7A38CD33F77AD8CD1CFE5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7ACD394333E7F034483CD /* ContentView.swift */; };
@@ -22,6 +23,7 @@
 		58C7AACA79E73A3A1493E5A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58C7AAFB090D1A6837EB6E3E /* Assets.xcassets */; };
 		58C7ABBE301CFB803271F338 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A5713740BDBA55455B53 /* Order.swift */; };
 		58C7AE7BAA156353B3CC9B42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7AB1EC38CF8891ED34F08 /* SceneDelegate.swift */; };
+		58C7AF68433E7EB83F63601E /* More.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A709B9DC68166947B333 /* More.swift */; };
 		58C7AF8D8DA2EF1B73F83742 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C7A5E208E175201431927D /* EventCategory.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,8 +38,10 @@
 		58C7A5E208E175201431927D /* EventCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		58C7A62782A8739C0F43A3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		58C7A669C6C26C2D4D7DFDA8 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		58C7A709B9DC68166947B333 /* More.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = More.swift; sourceTree = "<group>"; };
 		58C7A74325A63CF3689D5248 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		58C7A7B7504AE94150EA5C4D /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		58C7A932473587343D42D97F /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		58C7AAFB090D1A6837EB6E3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58C7AB1EC38CF8891ED34F08 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		58C7ACD394333E7F034483CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				58C7ADDDC678A7546D3E9131 /* DashboardCard.swift */,
 				58C7A405C54A41F039277A3B /* OrderCard.swift */,
 				58C7A42FB167471753695530 /* OrderDetails.swift */,
+				58C7A932473587343D42D97F /* Favorites.swift */,
+				58C7A709B9DC68166947B333 /* More.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -164,6 +170,11 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "artem chernousov";
+				TargetAttributes = {
+					58C7A3E9573FA1F7B6EC0E58 = {
+						DevelopmentTeam = KA3NJF7MTD;
+					};
+				};
 			};
 			buildConfigurationList = 58C7AAB77A6F076069D3BAEC /* Build configuration list for PBXProject "events-swiftui-prototype" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -215,6 +226,8 @@
 				58C7ABBE301CFB803271F338 /* Order.swift in Sources */,
 				58C7A5AB71F094CBEB00DD23 /* OrderCard.swift in Sources */,
 				58C7A9B3CB098D66F79F11CE /* OrderDetails.swift in Sources */,
+				58C7A074568E1751F46F7191 /* Favorites.swift in Sources */,
+				58C7AF68433E7EB83F63601E /* More.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_ASSET_PATHS = "\"events-swiftui-prototype/Preview Content\"";
+				DEVELOPMENT_TEAM = KA3NJF7MTD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "events-swiftui-prototype/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -365,6 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_ASSET_PATHS = "\"events-swiftui-prototype/Preview Content\"";
+				DEVELOPMENT_TEAM = KA3NJF7MTD;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "events-swiftui-prototype/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
