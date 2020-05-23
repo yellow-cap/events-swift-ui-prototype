@@ -21,62 +21,58 @@ struct Dashboard: View {
     }
 
     var body: some View {
-        GeometryReader { gr in
-            VStack {
-                self.picker(activeSegment: self.$selectedSegment)
+        VStack {
+            if self.selectedSegment == Segments.all.rawValue {
+                self.list(
+                        events: self.appState.events,
+                        orders: self.appState.orders
+                )
+            } else if self.selectedSegment == Segments.light.rawValue {
+                self.list (
+                        events: self.appState.events.filter { $0.category == EventCategory.light },
+                        orders: self.appState.orders.filter { $0.category == EventCategory.light }
+                )
+            } else if self.selectedSegment == Segments.normal.rawValue {
+                self.list (
+                        events: self.appState.events.filter { $0.category == EventCategory.normal },
+                        orders: self.appState.orders.filter { $0.category == EventCategory.normal }
+                )
+            } else if self.selectedSegment == Segments.hard.rawValue {
+                self.list (
+                        events: self.appState.events.filter { $0.category == EventCategory.hard },
+                        orders: self.appState.orders.filter { $0.category == EventCategory.hard }
+                )
+            }
 
-                if self.selectedSegment == Segments.all.rawValue {
-                    self.list(
-                            events: self.appState.events,
-                            orders: self.appState.orders
-                    )
-                } else if self.selectedSegment == Segments.light.rawValue {
-                    self.list (
-                            events: self.appState.events.filter { $0.category == EventCategory.light },
-                            orders: self.appState.orders.filter { $0.category == EventCategory.light }
-                    )
-                } else if self.selectedSegment == Segments.normal.rawValue {
-                    self.list (
-                            events: self.appState.events.filter { $0.category == EventCategory.normal },
-                            orders: self.appState.orders.filter { $0.category == EventCategory.normal }
-                    )
-                } else if self.selectedSegment == Segments.hard.rawValue {
-                    self.list (
-                            events: self.appState.events.filter { $0.category == EventCategory.hard },
-                            orders: self.appState.orders.filter { $0.category == EventCategory.hard }
-                    )
-                }
-
-                if self.isEventDetailsActive {
-                    NavigationLink(
-                            destination: EventDetails(props:
-                            EventDetailsProps(
-                                    event: self.appState.events.first { $0.id == self.selectedEventId }!
-                            )),
-                            isActive: self.$isEventDetailsActive
-                    ) {
-                        EmptyView()
-                    }
-                }
-
-                if self.isOrderDetailsActive {
-                    NavigationLink(
-                            destination: OrderDetails(props:
-                            OrderDetailsProps(
-                                    order: self.appState.orders.first { $0.id == self.selectedOrderId }!
-                            )),
-                            isActive: self.$isOrderDetailsActive
-                    ) {
-                        EmptyView()
-                    }
+            if self.isEventDetailsActive {
+                NavigationLink(
+                        destination: EventDetails(props:
+                        EventDetailsProps(
+                                event: self.appState.events.first { $0.id == self.selectedEventId }!
+                        )),
+                        isActive: self.$isEventDetailsActive
+                ) {
+                    EmptyView()
                 }
             }
-                    .navigationBarTitle("Dashboard")
-                    .onAppear {
-                        self.fetchEvents()
-                        self.fetchOrders()
-                    }
+
+            if self.isOrderDetailsActive {
+                NavigationLink(
+                        destination: OrderDetails(props:
+                        OrderDetailsProps(
+                                order: self.appState.orders.first { $0.id == self.selectedOrderId }!
+                        )),
+                        isActive: self.$isOrderDetailsActive
+                ) {
+                    EmptyView()
+                }
+            }
         }
+            .navigationBarTitle("Dashboard")
+            .onAppear {
+                self.fetchEvents()
+                self.fetchOrders()
+            }
     }
     
     private func picker(activeSegment: Binding<Int>) -> some View {
@@ -86,6 +82,7 @@ struct Dashboard: View {
             Text("Normal").tag(2)
             Text("Hard").tag(3)
         }
+                .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 .background(Color.white)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -94,20 +91,23 @@ struct Dashboard: View {
 
     private func list(events: [Event], orders: [Order]) -> some View {
         List {
-            if !orders.isEmpty {
-                self.orders(orders: orders)
-            }
+            Section(header: self.picker(activeSegment: self.$selectedSegment)) {
+                if !orders.isEmpty {
+                    self.orders(orders: orders)
 
-            if !events.isEmpty {
-                Text("Events").font(.largeTitle)
-                ForEach(events) { event in
-                    DashboardCard(props: DashboardCardProps(
-                            event: event
-                    ))
-                            .onTapGesture {
-                                self.selectedEventId = event.id
-                                self.isEventDetailsActive = true
-                            }
+                    if !events.isEmpty {
+                        Text("Events").font(.largeTitle)
+                        ForEach(events) { event in
+                            DashboardCard(props: DashboardCardProps(
+                                    event: event
+                            ))
+                                    .onTapGesture {
+                                        self.selectedEventId = event.id
+                                        self.isEventDetailsActive = true
+                                    }
+                        }
+                    }
+
                 }
             }
         }
