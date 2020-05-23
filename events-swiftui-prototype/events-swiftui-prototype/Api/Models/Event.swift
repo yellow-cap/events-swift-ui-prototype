@@ -7,4 +7,5 @@ struct Event: Identifiable {
     let price: Int
     let currency: String
     let persons: Int
+    let isFavorite: Bool
 }

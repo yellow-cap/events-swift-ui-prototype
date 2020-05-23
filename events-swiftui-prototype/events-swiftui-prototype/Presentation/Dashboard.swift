@@ -70,8 +70,13 @@ struct Dashboard: View {
         }
             .navigationBarTitle("Dashboard")
             .onAppear {
-                self.fetchEvents()
-                self.fetchOrders()
+                if self.appState.events.isEmpty {
+                    self.fetchEvents()
+                }
+
+                if self.appState.orders.isEmpty {
+                    self.fetchOrders()
+                }
             }
     }
     
@@ -99,7 +104,8 @@ struct Dashboard: View {
                         Text("Events").font(.largeTitle)
                         ForEach(events) { event in
                             DashboardCard(props: DashboardCardProps(
-                                    event: event
+                                    event: event,
+                                    onFavoriteTap: self.onFavoriteTap
                             ))
                                     .onTapGesture {
                                         self.selectedEventId = event.id
@@ -146,5 +152,23 @@ struct Dashboard: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.appState.orders = self.fetcher.fetchOrders()
         }
+    }
+
+    private func onFavoriteTap(_ event: Event) {
+        guard let index = self.appState.events.firstIndex(where: { $0.id == event.id }) else {
+            return
+        }
+
+        self.appState.events[index] = Event(
+                id: event.id,
+                name: event.name,
+                category: event.category,
+                imgUrl: event.imgUrl,
+                location: event.location,
+                price: event.price,
+                currency: event.currency,
+                persons: event.persons,
+                isFavorite: event.isFavorite ? false : true
+        )
     }
 }

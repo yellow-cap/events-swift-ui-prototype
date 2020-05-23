@@ -12,7 +12,8 @@ class Fetcher {
                     location: "Izhevsk",
                     price: 1500,
                     currency: "₽",
-                    persons: 5
+                    persons: 5,
+                    isFavorite: false
             ),
             Event(
                     id: 1,
@@ -22,7 +23,8 @@ class Fetcher {
                     location: "Glazov",
                     price: 2000,
                     currency: "₽",
-                    persons: 15
+                    persons: 15,
+                    isFavorite: false
             ),
             Event(
                     id: 2,
@@ -32,7 +34,8 @@ class Fetcher {
                     location: "Sarapul",
                     price: 2300,
                     currency: "₽",
-                    persons: 7
+                    persons: 7,
+                    isFavorite: false
             ),
             Event(
                     id: 3,
@@ -42,7 +45,8 @@ class Fetcher {
                     location: "Votkinks",
                     price: 5000,
                     currency: "₽",
-                    persons: 1
+                    persons: 1,
+                    isFavorite: false
             )
         ]
     }

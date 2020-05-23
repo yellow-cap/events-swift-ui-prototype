@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DashboardCardProps {
     let event: Event
+    let onFavoriteTap: (Event) -> Void
 }
 
 struct DashboardCard: View {
@@ -15,9 +16,20 @@ struct DashboardCard: View {
                     .frame(minWidth: nil, idealWidth: nil, maxWidth: UIScreen.main.bounds.width, minHeight: nil, idealHeight: nil, maxHeight: 300, alignment: .center)
                     .clipped()
             VStack(alignment: .leading, spacing: 6) {
-                Text(props.event.name)
-                Text("Category: \(props.event.category.rawValue)")
-                Text("Location: \(props.event.location)")
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading) {
+                        Text(props.event.name)
+                        Text("Category: \(props.event.category.rawValue)")
+                        Text("Location: \(props.event.location)")      
+                    }
+                    Spacer()
+                    Image(systemName: self.props.event.isFavorite ? "heart.fill" : "heart")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.red)
+                            .onTapGesture {
+                                self.props.onFavoriteTap(self.props.event)
+                            }
+                }
                 Divider()
                 HStack {
                     Text("Price: \(props.event.price)\(props.event.currency) per person")
