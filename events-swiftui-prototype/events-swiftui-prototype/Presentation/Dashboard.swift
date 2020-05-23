@@ -100,20 +100,20 @@ struct Dashboard: View {
                 if !orders.isEmpty {
                     self.orders(orders: orders)
 
-                    if !events.isEmpty {
-                        Text("Events").font(.largeTitle)
-                        ForEach(events) { event in
-                            DashboardCard(props: DashboardCardProps(
-                                    event: event,
-                                    onFavoriteTap: self.onFavoriteTap
-                            ))
-                                    .onTapGesture {
-                                        self.selectedEventId = event.id
-                                        self.isEventDetailsActive = true
-                                    }
-                        }
+                }
+                
+                if !events.isEmpty {
+                    Text("Events").font(.largeTitle)
+                    ForEach(events) { event in
+                        DashboardCard(props: DashboardCardProps(
+                                event: event,
+                                onFavoriteTap: self.onFavoriteTap
+                        ))
+                                .onTapGesture {
+                                    self.selectedEventId = event.id
+                                    self.isEventDetailsActive = true
+                                }
                     }
-
                 }
             }
         }
